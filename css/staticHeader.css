@@ -1,0 +1,566 @@
+*,
+::before,
+::after {
+    border-color: #E5E7EB;
+    border-style: solid;
+    border-width: 0;
+    box-sizing: border-box;
+    font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+@font-face {
+    font-family: 'bmg-font-special';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../Fonts/bungee/bmg-bungee.woff') format("woff");
+}
+
+@font-face {
+    font-family: 'bmg-font-special';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../Fonts/bungee/bmg-bungee.woff') format("woff");
+}
+
+@font-face {
+    font-family: 'bmg-font-std';
+    src: url(../Fonts/signika/Signika-VariableFont.ttf);
+}
+
+.bungee {
+    font-family: 'bmg-font-special', Arial;
+}
+
+.signika {
+    font-family: 'bmg-font-std', Arial;
+}
+
+/*
+ * Everything above is just for making it look correct in this static version
+ * When added to livesystem, the above is not needed, as its already included
+ */
+header {
+    margin-bottom: 3em;
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+}
+
+.header {
+    background-color: black;
+    color: white;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 50px 1fr;
+    height: 100px;
+    padding: 32px;
+    place-content: center;
+    width: 100%;
+}
+
+.left-menu {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+}
+
+.hamburger-menu {
+    align-items: center;
+    color: white;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.menu-toggle,
+.menu-item-toggle,
+.language-switch-toggle {
+    border: none;
+    margin: 0;
+    opacity: 0;
+    width: 0;
+}
+
+.menu-bg {
+    background-color: black;
+    inset: 0;
+    opacity: 0;
+    position: fixed;
+    top: 100px;
+    transition: visibility 0.6s, opacity 0.6s ease-out;
+    visibility: hidden;
+}
+
+.menu-toggle:checked ~ .menu-bg {
+    opacity: 40%;
+    visibility: visible;
+}
+
+.menu-toggle:checked ~ .menu-box {
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(0);
+}
+
+.menu-item-toggle:checked ~ .submenu {
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(400px);
+}
+
+.header-link-mobile a:hover,
+.right-menu li a:hover,
+.header-link a:hover,
+.language > label:hover,
+.menu-item:hover,
+.menu-item-toggle:checked ~ .menu-item {
+    background-color: #1E1E1E;
+}
+
+.menu-btn {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    position: relative;
+    width: 32px;
+    z-index: 1;
+}
+
+.menu-btn > span,
+.menu-btn > span::before,
+.menu-btn > span::after {
+    background-color: white;
+    border-radius: 7px;
+    display: block;
+    height: 2px;
+    position: absolute;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: width transform;
+    transition-timing-function: ease-out;
+}
+
+.menu-btn > span,
+.menu-btn > span::after {
+    width: 12px;
+}
+
+.menu-btn > span::before {
+    content: "";
+    top: -6px;
+    width: 18px;
+}
+
+.menu-btn > span::after {
+    content: "";
+    top: 6px;
+}
+
+.menu-toggle:checked + .menu-btn > span {
+    transform: rotate(45deg);
+    width: 18px;
+}
+
+.menu-toggle:checked + .menu-btn > span::before {
+    top: 0;
+    width: 0;
+}
+
+.menu-toggle:checked + .menu-btn > span::after {
+    top: 0;
+    transform: rotate(-90deg);
+    width: 18px;
+}
+
+.header-links-mobile {
+    display: none;
+}
+
+.header-link-mobile svg {
+    stroke: white;
+}
+
+.header-links {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+}
+
+.header-link {
+    list-style: none;
+}
+
+.header-link a {
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: background-color, color;
+    transition-timing-function: ease-out;
+}
+
+.header-link-mobile a:hover,
+.header-link a:hover,
+.right-menu li a:hover {
+    color: #7AB929;
+}
+
+.logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 72px;
+}
+
+.right-menu,
+.header-link-mobile {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.right-menu li {
+    list-style: none;
+}
+
+.right-menu li a {
+    position: relative;
+}
+
+.right-menu li a,
+.header-link-mobile a {
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: background-color, color;
+    transition-timing-function: ease-out;
+}
+
+.header-link-mobile a svg,
+.right-menu li a svg {
+    stroke: white;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: stroke;
+    transition-timing-function: ease-out;
+}
+
+.header-link-mobile a:hover svg,
+.right-menu li a:hover svg {
+    stroke: #7AB929;
+}
+
+.right-menu li a .counter {
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    justify-content: center;
+    padding: 2px 4px;
+    position: absolute;
+    right: -4px;
+    top: -2px;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.menu-box {
+    display: flex;
+    height: calc(100% - 100px);
+    left: 0;
+    list-style: none;
+    margin: 0;
+    margin-top: 100px;
+    position: fixed;
+    top: 0;
+    transform: translateX(-400px);
+    transition-duration: 0.6s, 0.8s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+.primary-menu {
+    background-color: #0d0d0d;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 400px;
+    width: 100vw;
+}
+
+.primary-menu-body {
+    height: 100%;
+    padding: 32px 0;
+}
+
+.menu-box-footer {
+    align-items: center;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+}
+
+.home-button,
+.language {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 4px;
+    position: relative;
+}
+
+.language-switch-toggle:checked ~ .language-states {
+    display: block;
+}
+
+.language > label {
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+    padding: 14px 17px;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+}
+
+.language-states {
+    background-color: white;
+    border-radius: 8px;
+    bottom: 100%;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    display: none;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.language-item-button {
+    color: #374151;
+    display: inline-flex;
+    font-size: 14px;
+    padding: 8px 16px;
+    width: 100%;
+}
+
+.language-item-button:hover {
+    background-color: #f3f4f6;
+}
+
+.search-block {
+    padding-inline: 32px;
+    position: relative;
+}
+
+.search-block .search-icon {
+    bottom: 0;
+    left: 0;
+    padding: 12px 54px;
+    position: absolute;
+    top: 0;
+}
+
+.search-block input {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #666666;
+    border-radius: 9px;
+    color: white;
+    display: flex;
+    outline: none;
+    padding: 12px 12px 12px 50px;
+    width: 100%;
+}
+
+.primary-menu-list {
+    margin-top: 14px;
+    padding-inline: 18px;
+}
+
+.menu-item {
+    align-items: center;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 14px 17px;
+    text-decoration: none;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+    width: 100%;
+}
+
+.menu-item > .title {
+    font-family: 'bmg-font-special';
+}
+
+.submenu {
+    background-color: #0d0d0d;
+    color: white;
+    inset: 0;
+    left: 0;
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+    width: 400px;
+    z-index: -1;
+}
+
+.submenu .menu-item {
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    display: inline-flex;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: border-bottom-color;
+    transition-timing-function: ease-out;
+}
+
+.submenu .menu-item:hover {
+    background-color: unset;
+    border-bottom: 2px solid white;
+}
+
+.menu-toggle:checked ~ .menu-box .submenu.active {
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(400px);
+}
+
+.submenu-header {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+}
+
+.back-link {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    gap: 8px;
+}
+
+.back-link:hover {
+    color: #7ab929;
+}
+
+.submenu-header .menu-title {
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 24px;
+}
+
+.submenu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 32px 32px;
+}
+
+.submenu-list .menu-item {
+    display: inline;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0;
+}
+
+.menu-box-footer {
+    align-items: center;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+}
+
+@media (max-width: 480px) {
+    header {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .header {
+        padding-inline: 16px;
+    }
+
+    .left-menu {
+        gap: 12px;
+    }
+
+    .header-links-mobile {
+        display: block;
+    }
+
+    .header-links {
+        display: none;
+    }
+
+    .right-menu .user {
+        display: none;
+    }
+
+    .submenu {
+        transform: translateX(-400px);
+        z-index: inherit;
+    }
+
+    .menu-toggle:checked ~ .menu-box .submenu.active {
+        transform: translateX(0);
+    }
+
+    .submenu-header {
+        padding: 16px;
+    }
+
+    .menu-item-toggle:checked ~ .submenu {
+        transform: translateX(0px);
+    }
+
+    .right-menu {
+        gap: 3px;
+    }
+
+    .right-menu li a {
+        padding: 7px;
+    }
+
+    .right-menu li a svg {
+        height: 19px;
+        width: 20px;
+    }
+}
