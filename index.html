@@ -3,8 +3,8 @@
     <link rel="stylesheet" href="css/staticHeader.css">
 </head>
 <body>
-<header>
-    <div class="header">
+<header class="bmg-header-container">
+    <div class="bmg-header">
         <div class="left-menu">
             <div class="hamburger-menu">
                 <input class="menu-toggle" type="checkbox" id="menu-toggle"/>
@@ -21,7 +21,7 @@
                                         <path d="M11.0482 10.0737L14 13.0248L13.0248 14L10.0737 11.0482C8.9757 11.9285 7.60993 12.4072 6.20262 12.4052C2.77877 12.4052 0 9.62646 0 6.20262C0 2.77877 2.77877 0 6.20262 0C9.62646 0 12.4052 2.77877 12.4052 6.20262C12.4072 7.60993 11.9285 8.9757 11.0482 10.0737ZM9.66575 9.56237C10.5404 8.66291 11.0289 7.45722 11.0269 6.20262C11.0269 3.53687 8.86768 1.37836 6.20262 1.37836C3.53687 1.37836 1.37836 3.53687 1.37836 6.20262C1.37836 8.86768 3.53687 11.0269 6.20262 11.0269C7.45722 11.0289 8.66291 10.5404 9.56237 9.66575L9.66575 9.56237Z" fill="#666666"></path>
                                     </svg>
                                 </div>
-                                <input type="text" name="menu-search" id="menuSearch-10"
+                                <input type="search" name="menu-search" id="menuSearch-10"
                                        placeholder="Fohlenshop durchsuchen.."/>
                             </div>
                             <ul class="primary-menu-list">
@@ -92,17 +92,16 @@
                             </ul>
                         </div>
                         <div class="menu-box-footer">
-                            <div class="home-button">
+                            <a class="home-button" target="_blank" href="https://borussia.de">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="5" height="9" viewBox="0 0 5 9"
                                      fill="none">
                                     <path d="M1.81795 4.5L5 8.00016L4.09103 9L0 4.5L4.09103 0L5 0.999843L1.81795 4.5Z"
                                           fill="white"></path>
                                 </svg>
                                 borussia.de
-                            </div>
+                            </a>
                             <div class="language">
-                                <input type="checkbox" class="language-switch-toggle" id="language-switch-toggle"
-                                       hidden/>
+                                <input type="checkbox" class="language-switch-toggle" id="language-switch-toggle" hidden/>
                                 <label for="language-switch-toggle" type="button">
                                     <div class="globe">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
@@ -117,37 +116,37 @@
                                     </div>
                                     Deutsch (DE)
                                 </label>
-                                <div class="language-states">
+                                <div class="language-states" id="bmg-nav-lang">
                                     <ul aria-labelledby="language-switch">
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/de_DE/index.html">
                                                 Deutsch (DE)
-                                            </button>
+                                            </a>
                                         </li>
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/en_EN/index.html">
                                                 English (EN)
-                                            </button>
+                                            </a>
                                         </li>
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/nl_NL/index.html">
                                                 Nederlands (NL)
-                                            </button>
+                                            </a>
                                         </li>
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/es_ES/index.html">
                                                 Español (ES)
-                                            </button>
+                                            </a>
                                         </li>
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/fr_FR/index.html">
                                                 Français (FR)
-                                            </button>
+                                            </a>
                                         </li>
                                         <li>
-                                            <button type="button" class="language-item-button">
+                                            <a type="button" class="language-item-button" lang="de" href="/zh_ZH/index.html">
                                                 中文 (ZH)
-                                            </button>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -194,6 +193,9 @@
         </a>
         <ul class="right-menu">
             <li class="favorites">
+                        <span class="counter d-none">
+                            99
+                        </span>
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="21" viewBox="0 0 23 21" fill="none">
                         <path d="M20.2913 2.61183C19.7805 2.10083 19.1741 1.69547 18.5066 1.41891C17.8392 1.14235 17.1238 1 16.4013 1C15.6788 1 14.9634 1.14235 14.2959 1.41891C13.6285 1.69547 13.022 2.10083 12.5113 2.61183L11.4513 3.67183L10.3913 2.61183C9.3596 1.58013 7.96032 1.00053 6.50129 1.00053C5.04226 1.00053 3.64298 1.58013 2.61129 2.61183C1.5796 3.64352 1 5.04279 1 6.50183C1 7.96086 1.5796 9.36013 2.61129 10.3918L3.67129 11.4518L11.4513 19.2318L19.2313 11.4518L20.2913 10.3918C20.8023 9.88107 21.2076 9.27464 21.4842 8.60718C21.7608 7.93972 21.9031 7.22431 21.9031 6.50183C21.9031 5.77934 21.7608 5.06393 21.4842 4.39647C21.2076 3.72901 20.8023 3.12258 20.2913 2.61183Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -210,9 +212,9 @@
             </li>
             <li class="cart">
                 <a href="#">
-                    <span class="counter">
-                        99
-                    </span>
+                            <span class="counter">
+                                99
+                            </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                         <path d="M7.85701 19.0003C8.33039 19.0003 8.71414 18.6165 8.71414 18.1431C8.71414 17.6698 8.33039 17.286 7.85701 17.286C7.38363 17.286 6.99988 17.6698 6.99988 18.1431C6.99988 18.6165 7.38363 19.0003 7.85701 19.0003Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M17.2855 19.0003C17.7589 19.0003 18.1426 18.6165 18.1426 18.1431C18.1426 17.6698 17.7589 17.286 17.2855 17.286C16.8121 17.286 16.4283 17.6698 16.4283 18.1431C16.4283 18.6165 16.8121 19.0003 17.2855 19.0003Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
