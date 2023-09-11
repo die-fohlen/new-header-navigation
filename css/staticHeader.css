@@ -1,9 +1,7 @@
 *,
 ::before,
 ::after {
-    border-color: #E5E7EB;
-    border-style: solid;
-    border-width: 0;
+    border: 0 solid #E5E7EB; /* make it more overwritable for the search input */
     box-sizing: border-box;
     font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -49,14 +47,21 @@ ul {
  * Everything above is just for making it look correct in this static version
  * When added to livesystem, the above is not needed, as its already included
  */
-header {
+header.bmg-header-container {
     margin-bottom: 3em;
-    position: sticky;
+    position: fixed; /* changed from sticky to fixed, because sticky didnt work*/
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 99999;
 }
 
-.header {
+.bmg-header_spacer { /* to space the header because its not sticky */
+    height: 100px;
+    margin-bottom: 3rem;
+}
+
+.bmg-header {
     background-color: black;
     color: white;
     display: grid;
@@ -119,6 +124,7 @@ header {
 .header-link-mobile a:hover,
 .right-menu li a:hover,
 .header-link a:hover,
+.header-link.active a, /* make it same as hover when link is active */
 .language > label:hover,
 .menu-item:hover,
 .menu-item-toggle:checked ~ .menu-item {
@@ -134,6 +140,7 @@ header {
     position: relative;
     width: 32px;
     z-index: 1;
+    margin-bottom: 0; /* overwrite shop style */
 }
 
 .menu-btn > span,
@@ -145,7 +152,7 @@ header {
     height: 2px;
     position: absolute;
     transition-duration: 0.6s, 0.8s;
-    transition-property: width transform;
+    transition-property: width, transform;
     transition-timing-function: ease-out;
 }
 
@@ -214,6 +221,7 @@ header {
 
 .header-link-mobile a:hover,
 .header-link a:hover,
+.header-link.active a, /* make it same as hover when link is active */
 .right-menu li a:hover {
     color: #7AB929;
 }
@@ -294,8 +302,7 @@ svg:not(:root) {
     height: calc(100% - 100px);
     left: 0;
     list-style: none;
-    margin: 0;
-    margin-top: 100px;
+    margin: 100px 0 0 0;
     position: fixed;
     top: 0;
     transform: translateX(-400px);
@@ -317,6 +324,7 @@ svg:not(:root) {
 .primary-menu-body {
     height: 100%;
     padding: 32px 0;
+    overflow: auto; /* make primary menu scrollable with too many categories */
 }
 
 .menu-box-footer {
@@ -326,6 +334,11 @@ svg:not(:root) {
     justify-content: space-between;
     padding: 32px;
 }
+
+div.menu-box-footer a.home-button {
+    color: white;
+    text-decoration: none;
+} /* remove style from back to borussia link*/
 
 .home-button,
 .language {
@@ -365,15 +378,16 @@ svg:not(:root) {
     z-index: 10;
 }
 
-.language-item-button {
+li > a.language-item-button {
     color: #374151;
     display: inline-flex;
     font-size: 14px;
     padding: 8px 16px;
     width: 100%;
+    text-decoration: none; /* changed from 'button' to 'a' to work with old implementation */
 }
 
-.language-item-button:hover {
+li > a.language-item-button:hover {
     background-color: #f3f4f6;
 }
 
@@ -393,13 +407,14 @@ svg:not(:root) {
 .search-block input {
     align-items: center;
     background-color: transparent;
-    border: 1px solid #666666;
+    border: 1px solid #666666 !important; /* make important for overwriting the shop styles */
     border-radius: 9px;
     color: white;
     display: flex;
     outline: none;
     padding: 12px 12px 12px 50px;
     width: 100%;
+    position: relative; /* when static, the search icon is over the input so you cant click in the input */
 }
 
 .primary-menu-list {
@@ -422,10 +437,11 @@ svg:not(:root) {
     transition-property: background-color;
     transition-timing-function: ease-out;
     width: 100%;
+    margin-bottom: 0; /* remove shop style */
 }
 
 .menu-item > .title {
-    font-family: 'bmg-font-special';
+    font-family: 'bmg-font-special', Arial, serif;
 }
 
 .submenu {
@@ -436,11 +452,14 @@ svg:not(:root) {
     max-width: 100vw;
     position: fixed;
     top: 0;
+    bottom: 0;
     transition-duration: 0.6s, 0.8s;
     transition-property: transform;
     transition-timing-function: ease-out;
     width: 400px;
     z-index: -1;
+    display: flex;
+    flex-direction: column;
 }
 
 .submenu .menu-item {
@@ -485,11 +504,17 @@ svg:not(:root) {
     font-size: 24px;
 }
 
+a.menu-title { /* for making the submenu title a link*/
+    color: white;
+    text-decoration: none;
+}
+
 .submenu-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 0 32px 32px;
+    overflow: auto; /* make submenu scrollable with too many categories */
 }
 
 .submenu-list .menu-item {
@@ -497,6 +522,8 @@ svg:not(:root) {
     font-size: 20px;
     font-weight: 400;
     padding: 0;
+    color: white; /* overwrite hover link color*/
+    text-decoration: none; /* overwrite hover link style*/
 }
 
 .menu-box-footer {
@@ -508,13 +535,13 @@ svg:not(:root) {
 }
 
 @media (max-width: 480px) {
-    header {
+    header.bmg-header {
         margin-bottom: 0;
     }
 }
 
-@media (max-width: 800px) {
-    .header {
+@media (max-width: 1000px) {
+    .bmg-header {
         padding-inline: 16px;
     }
 
@@ -536,7 +563,7 @@ svg:not(:root) {
 
     .submenu {
         transform: translateX(-400px);
-        z-index: inherit;
+        z-index: 1; /* make the submenu above the language selector on mobile */
     }
 
     .menu-toggle:checked ~ .menu-box .submenu.active {
@@ -563,4 +590,8 @@ svg:not(:root) {
         height: 19px;
         width: 20px;
     }
+}
+
+header.bmg-header-container > .bmg-header ul { /* remove margin from main links in header */
+    margin-bottom: 0;
 }

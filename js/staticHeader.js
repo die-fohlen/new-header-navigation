@@ -3,11 +3,12 @@ $(document).ready(function(){
         $('.menu-item-toggle').prop('checked', false);
     }
 
-    // close navigation when clicking outside of the menu
+    // close navigation when clicking outside the menu
     $('.menu-bg').click(function () {
         // close main Menu
-        if ($('input#menu-toggle').is(':checked')) {
-            $('input#menu-toggle').prop('checked', false);
+        const menuToggle = $('input#menu-toggle')
+        if (menuToggle.is(':checked')) {
+            menuToggle.prop('checked', false);
         }
 
         // Close Submenus
@@ -26,6 +27,9 @@ $(document).ready(function(){
     $('.menu-btn').click(function () {
         if($('.menu-toggle').prop('checked') === true) {
             close2ndLevel();
+            setTimeout(() => {
+                $('#language-switch-toggle').prop('checked', false);
+            }, 600); // close language switch after menu closing transition is done
         }
     });
-})
+});
