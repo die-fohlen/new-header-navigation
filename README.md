@@ -3,7 +3,7 @@
 This repository includes a static version of the new Header navigation for Borussia VfL 1900 Mönchengladbach.
 
 ### There are 3 files to use:
-- index.html
+- website/shop/salesforce/eventim.html
 - css/staticHeader.css
 - js/staticHeader.js
 
