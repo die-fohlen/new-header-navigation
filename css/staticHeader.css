@@ -87,17 +87,22 @@ header.bmg-header-container {
     justify-content: center;
 }
 
+.hidden-mobile {
+    display: flex;
+}
+
+.hidden-desktop {
+    display: none;
+}
+
 .menu-toggle,
 .menu-item-toggle,
 .language-switch-toggle {
-    border: none;
-    margin: 0;
-    opacity: 0;
-    width: 0;
+    display: none;
 }
 
 .menu-bg {
-    background-color: black;
+    background-color: #000000;
     inset: 0;
     opacity: 0;
     position: fixed;
@@ -107,7 +112,7 @@ header.bmg-header-container {
 }
 
 .menu-toggle:checked ~ .menu-bg {
-    opacity: 40%;
+    opacity: 30%;
     visibility: visible;
 }
 
@@ -118,17 +123,18 @@ header.bmg-header-container {
 
 .menu-item-toggle:checked ~ .submenu {
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
-    transform: translateX(400px);
+    transform: translateX(768px);
 }
 
-.header-link-mobile a:hover,
-.right-menu li a:hover,
-.header-link a:hover,
-.header-link.active a, /* make it same as hover when link is active */
-.language > label:hover,
-.menu-item:hover,
+/* class .active can be changed if needed, e.g. if its needs to be .selected */
+.header-link a.active,
 .menu-item-toggle:checked ~ .menu-item {
     background-color: #1E1E1E;
+}
+
+.header-link a:hover,
+.primary-menu-item > .menu-item:hover {
+    background-color: #303030;
 }
 
 .menu-btn {
@@ -207,23 +213,16 @@ header.bmg-header-container {
 }
 
 .header-link a {
-    border-radius: 8px;
+    border-radius: 9px;
     color: white;
     display: flex;
     font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 20px;
-    padding: 7px 14px;
+    padding: 8px 12px;
     text-decoration: none;
-    transition-duration: 0.6s, 0.8s;
-    transition-property: background-color, color;
+    transition-duration: 400ms;
+    transition-property: background-color;
     transition-timing-function: ease-out;
-}
-
-.header-link-mobile a:hover,
-.header-link a:hover,
-.header-link.active a, /* make it same as hover when link is active */
-.right-menu li a:hover {
-    color: #7AB929;
 }
 
 .logo {
@@ -234,51 +233,69 @@ header.bmg-header-container {
 }
 
 .logo img {
-    height: 72px;
+    height: 71px;
 }
 
-.right-menu,
+.right-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 32px;
+}
+
+.right-menu .language .language-states {
+    bottom: unset;
+    top: calc(100% + 8px);
+    left: unset;
+    right: 0;
+}
+
+.meta-navigation,
 .header-link-mobile {
     align-items: center;
     display: flex;
-    gap: 6px;
-    margin-left: auto;
+    gap: 32px;
 }
 
-.right-menu li {
+.sponsors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.sponsors li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meta-navigation li {
     list-style: none;
 }
 
-.right-menu li a {
+.meta-navigation li a {
     position: relative;
 }
 
-.right-menu li a,
+.meta-navigation li a,
 .header-link-mobile a {
     align-items: center;
-    border-radius: 8px;
     display: flex;
-    padding: 7px 14px;
     text-decoration: none;
-    transition-duration: 0.6s, 0.8s;
-    transition-property: background-color, color;
-    transition-timing-function: ease-out;
 }
 
 .header-link-mobile a svg,
-.right-menu li a svg {
+.meta-navigation li a svg {
     stroke: white;
+    height: 20px;
+    width: 20px;
     transition-duration: 0.6s, 0.8s;
     transition-property: stroke;
     transition-timing-function: ease-out;
 }
 
-.header-link-mobile a:hover svg,
-.right-menu li a:hover svg {
-    stroke: #7AB929;
-}
-
-.right-menu li a .counter {
+.meta-navigation li a .counter {
     align-items: center;
     background-color: white;
     border-radius: 10px;
@@ -289,8 +306,8 @@ header.bmg-header-container {
     justify-content: center;
     padding: 2px 4px;
     position: absolute;
-    right: -4px;
-    top: -2px;
+    right: -12px;
+    top: -12px;
 }
 
 svg:not(:root) {
@@ -305,25 +322,28 @@ svg:not(:root) {
     margin: 100px 0 0 0;
     position: fixed;
     top: 0;
-    transform: translateX(-400px);
+    transform: translateX(-768px);
     transition-duration: 0.6s, 0.8s;
     transition-property: transform;
     transition-timing-function: ease-out;
 }
 
 .primary-menu {
-    background-color: #0d0d0d;
+    background-color: #0D0D0D;
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 768px;
     width: 100vw;
 }
 
 .primary-menu-body {
     height: 100%;
-    padding: 32px 0;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     overflow: auto; /* make primary menu scrollable with too many categories */
 }
 
@@ -335,12 +355,6 @@ svg:not(:root) {
     padding: 32px;
 }
 
-div.menu-box-footer a.home-button {
-    color: white;
-    text-decoration: none;
-} /* remove style from back to borussia link*/
-
-.home-button,
 .language {
     align-items: center;
     cursor: pointer;
@@ -349,8 +363,27 @@ div.menu-box-footer a.home-button {
     position: relative;
 }
 
+.language.language-left .language-states {
+    left: 0;
+}
+
+.language.language-right .language-states {
+    left: unset;
+    right: 0;
+}
+
 .language-switch-toggle:checked ~ .language-states {
     display: block;
+}
+
+.language-switch-toggle ~ label svg {
+    transition-property: transform;
+    transition-duration: 400ms;
+    transition-timing-function: ease-out;
+}
+
+.language-switch-toggle:checked ~ label svg {
+    transform: rotate(180deg);
 }
 
 .language > label {
@@ -358,53 +391,58 @@ div.menu-box-footer a.home-button {
     border-radius: 8px;
     cursor: pointer;
     display: flex;
-    gap: 8px;
-    padding: 14px 17px;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    gap: 13px;
     transition-duration: 0.6s, 0.8s;
     transition-property: background-color;
     transition-timing-function: ease-out;
 }
 
 .language-states {
-    background-color: white;
+    background-color: #1E1E1E;
     border-radius: 8px;
-    bottom: 100%;
+    bottom: calc(100% + 8px);
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
     display: none;
     overflow: hidden;
+    padding: 12px 16px;
     position: absolute;
-    right: 0;
-    width: 100%;
+    left: 0;
+    width: 160px;
     z-index: 10;
 }
 
+.language-states ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
 li > a.language-item-button {
-    color: #374151;
+    color: #FFFFFF;
     display: inline-flex;
+    justify-content: space-between;
     font-size: 14px;
-    padding: 8px 16px;
     width: 100%;
     text-decoration: none; /* changed from 'button' to 'a' to work with old implementation */
 }
 
-li > a.language-item-button:hover {
-    background-color: #f3f4f6;
-}
-
 .search-block {
-    padding-inline: 32px;
-    position: relative;
+    display: grid;
+    margin: 0 8px;
 }
 
 .search-block .search-icon {
-    bottom: 0;
-    left: 0;
-    padding: 12px 54px;
-    position: absolute;
-    top: 0;
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    align-self: center;
+    padding-left: 16px;
 }
 
 .search-block input {
+    grid-area: 1 / 1 / 2 / 2;
     align-items: center;
     background-color: transparent;
     border: 1px solid #666666 !important; /* make important for overwriting the shop styles */
@@ -412,14 +450,10 @@ li > a.language-item-button:hover {
     color: white;
     display: flex;
     outline: none;
-    padding: 12px 12px 12px 50px;
+    padding: 13px 16px 13px 50px;
+    font-size: 17px;
     width: 100%;
     position: relative; /* when static, the search icon is over the input so you cant click in the input */
-}
-
-.primary-menu-list {
-    margin-top: 14px;
-    padding-inline: 18px;
 }
 
 .menu-item {
@@ -431,9 +465,9 @@ li > a.language-item-button:hover {
     font-size: 20px;
     font-weight: 600;
     justify-content: space-between;
-    padding: 14px 17px;
+    padding: 16px;
     text-decoration: none;
-    transition-duration: 0.6s, 0.8s;
+    transition-duration: 0.4s;
     transition-property: background-color;
     transition-timing-function: ease-out;
     width: 100%;
@@ -452,11 +486,13 @@ li > a.language-item-button:hover {
     max-width: 100vw;
     position: fixed;
     top: 0;
+    gap: 16px;
     bottom: 0;
-    transition-duration: 0.6s, 0.8s;
+    transition-duration: 0.7s;
     transition-property: transform;
     transition-timing-function: ease-out;
-    width: 400px;
+    padding: 32px;
+    width: 768px;
     z-index: -1;
     display: flex;
     flex-direction: column;
@@ -471,32 +507,47 @@ li > a.language-item-button:hover {
     transition-timing-function: ease-out;
 }
 
-.submenu .menu-item:hover {
-    background-color: unset;
-    border-bottom: 2px solid white;
+.submenu .menu-item.active:after {
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.submenu .menu-item:after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    transition-timing-function: ease-out;
+    transition-duration: 700ms;
+    transition-property: all;
+}
+
+.submenu .menu-item:hover:after {
+    background-color: #7E7E7E;
+    content: "";
+    display: block;
+    width: 100%;
 }
 
 .menu-toggle:checked ~ .menu-box .submenu.active {
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
-    transform: translateX(400px);
+    box-shadow: -10px 0 14px 0 rgba(0, 0, 0, 0.25);
+    transform: translateX(768px);
 }
 
 .submenu-header {
     display: flex;
     flex-direction: column;
-    padding: 24px 16px;
+    gap: 4px;
 }
 
 .back-link {
     align-items: center;
     cursor: pointer;
     display: flex;
-    font-size: 14px;
+    font-size: 15px;
     gap: 8px;
-}
-
-.back-link:hover {
-    color: #7ab929;
+    padding: 2px 4px;
+    width: max-content;
 }
 
 .submenu-header .menu-title {
@@ -513,17 +564,18 @@ a.menu-title { /* for making the submenu title a link*/
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0 32px 32px;
+    padding-left: 32px;
     overflow: auto; /* make submenu scrollable with too many categories */
 }
 
 .submenu-list .menu-item {
-    display: inline;
+    display: inline-grid;
     font-size: 20px;
     font-weight: 400;
     padding: 0;
     color: white; /* overwrite hover link color*/
     text-decoration: none; /* overwrite hover link style*/
+    width: auto;
 }
 
 .menu-box-footer {
@@ -531,38 +583,156 @@ a.menu-title { /* for making the submenu title a link*/
     border-top: 1px solid white;
     display: flex;
     justify-content: space-between;
-    padding: 32px;
+    padding: 26px 32px;
 }
 
-@media (max-width: 480px) {
+.menu-box-footer .sponsors {
+    display: none;
+}
+
+.home-button {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+
+}
+
+.mobile-header-links {
+    display: none;
+    overflow-x: scroll;
+    gap: 32px;
+    border-bottom: 1px solid #FFFFFF;
+    padding-bottom: 16px;
+}
+
+.mobile-header-links .header-link a {
+    padding: 0;
+}
+
+.mobile-header-links .header-link a:hover {
+    background-color: unset;
+}
+
+.mobile-header-links::-webkit-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    display: none;
+}
+
+.primary-menu-list { /* remove margin from main links in header */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.homepage-addition {
+    display: none;
+    background-color: #000000;
+}
+
+.homepage-addition ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 14px 16px;
+}
+
+.homepage-addition ul li a {
+    padding: 12px 16px;
+    background-color: #181818;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.homepage-addition ul li a:hover {
+    background-color: #303030;
+}
+
+.homepage-addition ul li a svg {
+    height: 22px;
+    width: 22px;
+}
+
+.homepage-addition ul li a span {
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media (max-width: 390px) {
+
+}
+
+@media (max-width: 640px) {
     header.bmg-header {
         margin-bottom: 0;
     }
+
+    .logo img {
+        height: 63px;
+    }
+
+    .right-menu .sponsors {
+        display: none;
+    }
+
+    .menu-box-footer .sponsors {
+        display: flex;
+    }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
+    .homepage-addition {
+        display: block;
+    }
+}
+
+@media (max-width: 1024px) {
+    .menu-bg {
+        top: 92px;
+    }
+
+    .menu-box {
+        height: calc(100% - 92px);
+    }
+
     .bmg-header {
-        padding-inline: 16px;
+        height: 92px;
+        padding: 14px 16px;
+    }
+
+    .menu-box {
+        margin-top: 92px;
+    }
+
+    .search-block {
+        display: none;
     }
 
     .left-menu {
-        gap: 12px;
+        gap: 28px;
     }
 
     .header-links-mobile {
         display: block;
     }
 
-    .header-links {
-        display: none;
-    }
-
-    .right-menu .user {
+    .meta-navigation .user {
         display: none;
     }
 
     .submenu {
-        transform: translateX(-400px);
+        transform: translateX(-768px);
         z-index: 1; /* make the submenu above the language selector on mobile */
     }
 
@@ -570,28 +740,46 @@ a.menu-title { /* for making the submenu title a link*/
         transform: translateX(0);
     }
 
-    .submenu-header {
-        padding: 16px;
-    }
-
     .menu-item-toggle:checked ~ .submenu {
         transform: translateX(0px);
     }
 
-    .right-menu {
+    .meta-navigation {
+        gap: 28px;
+    }
+
+    .meta-navigation ul {
         gap: 3px;
     }
 
-    .right-menu li a {
-        padding: 7px;
-    }
-
-    .right-menu li a svg {
-        height: 19px;
-        width: 20px;
+    .meta-navigation li a svg {
+        height: 18px;
+        width: 18px;
     }
 }
 
-header.bmg-header-container > .bmg-header ul { /* remove margin from main links in header */
-    margin-bottom: 0;
+@media (max-width: 1280px) {
+
+}
+
+@media (max-width: 1536px) {
+    .mobile-header-links {
+        display: flex;
+    }
+
+    .primary-menu-body {
+        padding: 16px;
+    }
+
+    .header-links {
+        display: none;
+    }
+
+    .hidden-mobile {
+        display: none;
+    }
+
+    .hidden-desktop {
+        display: flex;
+    }
 }
