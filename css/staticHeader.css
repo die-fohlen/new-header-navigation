@@ -338,7 +338,7 @@ svg:not(:root) {
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 768px;
+    max-width: 400px;
     width: 100vw;
 }
 
@@ -694,6 +694,24 @@ a.menu-title { /* for making the submenu title a link*/
 @media (max-width: 768px) {
     .homepage-addition {
         display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-box,
+    .submenu {
+        transform: translateX(-400px);
+    }
+    .primary-menu {
+        max-width: 400px;
+    }
+
+    .submenu {
+        width: 400px;
+    }
+
+    .menu-item-toggle:checked ~ .submenu {
+        transform: translateX(400px);
     }
 }
 
