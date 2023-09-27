@@ -40,6 +40,10 @@ $(document).ready(function(){
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
+
+            $('body').css('position', '');
+        } else {
+            $('body').css('position', 'fixed');
         }
     });
 });

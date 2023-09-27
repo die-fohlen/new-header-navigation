@@ -66,7 +66,6 @@ header + div {
 
 .bmg-header_spacer { /* to space the header because its not sticky */
     height: 100px;
-    margin-bottom: 3rem;
 }
 
 .bmg-header {
@@ -704,7 +703,7 @@ a.menu-title { /* for making the submenu title a link*/
     }
 
     header:has(.homepage-addition) + div {
-        margin-top: 152px;
+        margin-top: 152px !important;
     }
 }
 
@@ -739,6 +738,10 @@ a.menu-title { /* for making the submenu title a link*/
     .bmg-header {
         height: 92px;
         padding: 14px 16px;
+    }
+
+    .bmg-header_spacer {
+        height: 92px;
     }
 
     header + div {
