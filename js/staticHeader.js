@@ -1,3 +1,13 @@
+window.onpageshow = function(e){
+    const menuToggle = $('input#menu-toggle')
+
+    if (menuToggle.is(':checked')) {
+        menuToggle.prop('checked', false);
+    }
+
+    $('.menu-item-toggle').prop('checked', false);
+}
+
 $(document).ready(function(){
     function close2ndLevel() {
         $('.menu-item-toggle').prop('checked', false);

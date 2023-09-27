@@ -57,7 +57,7 @@ header.bmg-header-container {
     position: fixed; /* changed from sticky to fixed, because sticky didnt work*/
     right: 0;
     top: 0;
-    z-index: 99999;
+    z-index: 599;
 }
 
 .bmg-header_spacer { /* to space the header because its not sticky */
@@ -421,7 +421,6 @@ svg:not(:root) {
     display: flex;
     flex-direction: column;
     gap: 12px;
-
 }
 
 li > a.language-item-button {
@@ -476,6 +475,10 @@ li > a.language-item-button {
     transition-property: background-color;
     transition-timing-function: ease-out;
     width: 100%;
+}
+
+.menu-item.active {
+    background-color: #1E1E1E;
 }
 
 .menu-item > .title {
@@ -642,7 +645,7 @@ a.menu-title { /* for making the submenu title a link*/
     display: grid;
     gap: 16px;
     grid-template-columns: 1fr 1fr;
-    padding: 14px 16px;
+    padding: 0 16px 14px;
 }
 
 .homepage-addition ul li a {
@@ -722,15 +725,12 @@ a.menu-title { /* for making the submenu title a link*/
 
     .menu-box {
         height: calc(100% - 92px);
+        margin-top: 92px;
     }
 
     .bmg-header {
         height: 92px;
         padding: 14px 16px;
-    }
-
-    .menu-box {
-        margin-top: 92px;
     }
 
     .search-block {
