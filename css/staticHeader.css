@@ -141,6 +141,10 @@ header.bmg-header-container {
     background-color: #303030;
 }
 
+.primary-menu-item > .menu-item.active {
+    background-color: #1E1E1E;
+}
+
 .menu-btn {
     align-items: center;
     cursor: pointer;
@@ -475,10 +479,6 @@ li > a.language-item-button {
     transition-property: background-color;
     transition-timing-function: ease-out;
     width: 100%;
-}
-
-.menu-item.active {
-    background-color: #1E1E1E;
 }
 
 .menu-item > .title {
