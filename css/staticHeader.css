@@ -387,13 +387,13 @@ svg:not(:root) {
     display: block;
 }
 
-.language-switch-toggle ~ label svg {
+.language-switch-toggle ~ label .language-arrow {
     transition-duration: 400ms;
     transition-property: transform;
     transition-timing-function: ease-out;
 }
 
-.language-switch-toggle:checked ~ label svg {
+.language-switch-toggle:checked ~ label .language-arrow {
     transform: rotate(180deg);
 }
 
