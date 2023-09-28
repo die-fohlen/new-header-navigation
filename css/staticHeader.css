@@ -14,7 +14,6 @@ header ul {
 
 body {
     scrollbar-width: none;
-    width: 100%;
 }
 
 ul {
@@ -235,6 +234,11 @@ header + div {
     transition-duration: 400ms;
     transition-property: background-color;
     transition-timing-function: ease-out;
+}
+
+.header-link a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .logo {
@@ -617,6 +621,10 @@ li > a.language-item-button {
 
 .mobile-header-links .header-link a {
     padding: 0;
+}
+
+.mobile-header-links .header-link.active a {
+    background-color: transparent;
 }
 
 .mobile-header-links .header-link a:hover {

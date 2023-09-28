@@ -2,8 +2,8 @@ function close2ndLevel() {
     $('.menu-item-toggle').prop('checked', false);
 }
 
-function setPosition(position) {
-    $('body').css('position', position);
+function setOverflowY(overflow) {
+    $('body').css('overflow-y', overflow);
 }
 
 window.onpageshow = function(e){
@@ -24,7 +24,7 @@ $(document).ready(function(){
         const menuToggle = $('input#menu-toggle')
         if (menuToggle.is(':checked')) {
             menuToggle.prop('checked', false);
-            setPosition('');
+            setOverflowY('auto');
         }
 
         // Close Submenus
@@ -47,9 +47,11 @@ $(document).ready(function(){
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
 
-            setPosition('');
-        } else {
-            setPosition('fixed');
+            if ($(window).width() < 767 && $('.menu-toggle').prop('checked') !== true) {
+                setOverflowY('hidden');
+            } else {
+                setOverflowY('auto');
+            }
         }
     });
 });
