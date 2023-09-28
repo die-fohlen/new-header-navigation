@@ -237,6 +237,11 @@ header + div {
     transition-timing-function: ease-out;
 }
 
+.header-link a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .logo {
     align-items: center;
     display: flex;
@@ -621,6 +626,10 @@ a.menu-title { /* for making the submenu title a link*/
 
 .mobile-header-links .header-link a {
     padding: 0;
+}
+
+.mobile-header-links .header-link.active a {
+    background-color: transparent;
 }
 
 .mobile-header-links .header-link a:hover {

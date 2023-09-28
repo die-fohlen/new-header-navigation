@@ -40,10 +40,14 @@ $(document).ready(function(){
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
+        }
 
-            $('body').css('overflow-y', 'auto');
-        } else {
-            $('body').css('overflow-y', 'hidden');
+        if($(window).width() < 767) {
+            if($('.menu-toggle').prop('checked') === true) {
+                $('body').css('overflow-y', 'auto');
+            } else {
+                $('body').css('overflow-y', 'hidden');
+            }
         }
     });
 });
