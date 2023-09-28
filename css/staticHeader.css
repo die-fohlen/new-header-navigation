@@ -732,6 +732,10 @@ li > a.language-item-button {
         margin-top: 92px;
     }
 
+    .right-menu .user {
+        display: none;
+    }
+
     .bmg-header {
         height: 92px;
         padding: 14px 16px;
@@ -792,6 +796,7 @@ li > a.language-item-button {
 @media (max-width: 1536px) {
     .mobile-header-links {
         display: flex;
+        flex-shrink: 0;
     }
 
     .primary-menu-body {
