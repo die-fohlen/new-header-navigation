@@ -41,17 +41,17 @@ $(document).ready(function(){
     });
 
     $('.menu-btn').click(function () {
-        if($('.menu-toggle').prop('checked') === true) {
+        const menuToggleChecked = $('.menu-toggle').prop('checked')
+        if(menuToggleChecked) {
             close2ndLevel();
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
-
-            if ($(window).width() < 767 && $('.menu-toggle').prop('checked') !== true) {
-                setOverflowY('hidden');
-            } else {
-                setOverflowY('auto');
-            }
+        }
+        if ($(window).width() < 767 && !menuToggleChecked) {
+            setOverflowY('hidden');
+        } else {
+            setOverflowY('auto');
         }
     });
 });
