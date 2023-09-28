@@ -566,11 +566,6 @@ li > a.language-item-button {
     font-size: 24px;
 }
 
-a.menu-title { /* for making the submenu title a link*/
-    color: white;
-    text-decoration: none;
-}
-
 .submenu-list {
     display: flex;
     flex-direction: column;
