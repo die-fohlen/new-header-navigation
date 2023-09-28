@@ -1,3 +1,7 @@
+function close2ndLevel() {
+    $('.menu-item-toggle').prop('checked', false);
+}
+
 window.onpageshow = function(e){
     const menuToggle = $('input#menu-toggle')
 
@@ -5,13 +9,10 @@ window.onpageshow = function(e){
         menuToggle.prop('checked', false);
     }
 
-    $('.menu-item-toggle').prop('checked', false);
+    close2ndLevel();
 }
 
 $(document).ready(function(){
-    function close2ndLevel() {
-        $('.menu-item-toggle').prop('checked', false);
-    }
 
     // close navigation when clicking outside the menu
     $('.menu-bg').click(function () {
