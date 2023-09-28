@@ -41,9 +41,9 @@ $(document).ready(function(){
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
 
-            $('body').css('position', '');
+            $('body').css('overflow-y', 'auto');
         } else {
-            $('body').css('position', 'fixed');
+            $('body').css('overflow-y', 'hidden');
         }
     });
 });
