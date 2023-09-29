@@ -141,14 +141,12 @@ header + div {
 
 .header-link a:hover,
 .primary-menu-item > .menu-item:hover,
-.primary-menu-item > a > .menu-item:hover,
-.primary-menu-item > a > a > .menu-item:hover {
+.primary-menu-item > a .menu-item:hover {
     background-color: #303030;
 }
 
 .primary-menu-item > .menu-item.active,
-.primary-menu-item > a > .menu-item.active,
-.primary-menu-item > a > a > .menu-item.active{
+.primary-menu-item > a .menu-item.active {
     background-color: #1E1E1E;
 }
 
