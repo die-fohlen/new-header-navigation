@@ -134,7 +134,7 @@ header + div:not(.bmg-header_spacer) {
 }
 
 /* class .active can be changed if needed, e.g. if its needs to be .selected */
-.header-link a.active,
+.header-links .header-link a.active,
 .menu-item-toggle:checked ~ .menu-item {
     background-color: #1E1E1E;
 }
@@ -628,7 +628,8 @@ li > a.language-item-button {
     padding: 0;
 }
 
-.mobile-header-links .header-link.active a {
+.mobile-header-links .header-link.active a,
+.mobile-header-links .header-link a.active {
     background-color: transparent;
 }
 
