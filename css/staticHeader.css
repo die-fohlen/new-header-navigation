@@ -60,12 +60,12 @@ header.bmg-header-container {
     z-index: 599;
 }
 
-header + div {
-    margin-top: 100px !important;
-}
-
 .bmg-header_spacer { /* to space the header because its not sticky */
     height: 100px;
+}
+
+header + div:not(.bmg-header_spacer) {
+    margin-top: 100px !important;
 }
 
 .bmg-header {
@@ -395,6 +395,7 @@ svg:not(:root) {
 }
 
 .language-switch-toggle ~ label .language-arrow {
+    display: flex;
     transition-duration: 400ms;
     transition-property: transform;
     transition-timing-function: ease-out;
@@ -412,6 +413,7 @@ svg:not(:root) {
     font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 20px;
     gap: 13px;
+    line-height: 24px;
     transition-duration: 0.6s, 0.8s;
     transition-property: background-color;
     transition-timing-function: ease-out;
@@ -564,6 +566,7 @@ li > a.language-item-button {
     display: flex;
     font-size: 15px;
     gap: 8px;
+    margin-bottom: 0;
     padding: 2px 4px;
     width: max-content;
 }
@@ -755,7 +758,7 @@ li > a.language-item-button {
         height: 92px;
     }
 
-    header + div {
+    header + div:not(.bmg-header_spacer) {
         margin-top: 92px !important;
     }
 
