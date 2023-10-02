@@ -1,24 +1,30 @@
-window.onpageshow = function(e){
-    const menuToggle = $('input#menu-toggle')
+function close2ndLevel() {
+    $('.menu-item-toggle').prop('checked', false);
+}
+
+function setOverflowY(overflow) {
+    $('body').css('overflow-y', overflow);
+}
+
+window.onpageshow = function (e) {
+    const menuToggle = $('input#menu-toggle');
 
     if (menuToggle.is(':checked')) {
         menuToggle.prop('checked', false);
     }
 
-    $('.menu-item-toggle').prop('checked', false);
-}
+    close2ndLevel();
+};
 
-$(document).ready(function(){
-    function close2ndLevel() {
-        $('.menu-item-toggle').prop('checked', false);
-    }
+$(document).ready(function () {
 
     // close navigation when clicking outside the menu
     $('.menu-bg').click(function () {
         // close main Menu
-        const menuToggle = $('input#menu-toggle')
+        const menuToggle = $('input#menu-toggle');
         if (menuToggle.is(':checked')) {
             menuToggle.prop('checked', false);
+            setOverflowY('auto');
         }
 
         // Close Submenus
@@ -29,25 +35,25 @@ $(document).ready(function(){
 
     // close 2nd level, when opening 1st level navigation
     $('.menu-item').click(function () {
-        if($(this).closest('.primary-menu-item').find('.menu-item-toggle').prop('checked') === false) {
+        if ($(this).closest('.primary-menu-item').find('.menu-item-toggle').prop('checked') === false) {
             $('.menu-item-toggle').prop('checked', false);
         }
     });
 
     $('.menu-btn').click(function () {
-        if($('.menu-toggle').prop('checked') === true) {
+        const menuToggleChecked = $('.menu-toggle').prop('checked');
+
+        if (menuToggleChecked) {
             close2ndLevel();
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
         }
 
-        if($(window).width() < 767) {
-            if($('.menu-toggle').prop('checked') === true) {
-                $('body').css('overflow-y', 'auto');
-            } else {
-                $('body').css('overflow-y', 'hidden');
-            }
+        if ($(window).width() < 767 && !menuToggleChecked) {
+            setOverflowY('hidden');
+        } else {
+            setOverflowY('auto');
         }
     });
 });
