@@ -136,7 +136,7 @@ header + div:not(.bmg-header_spacer) {
 }
 
 /* class .active can be changed if needed, e.g. if its needs to be .selected */
-.header-links .header-link a.active,
+.header-link a.active,
 .menu-item-toggle:checked ~ .menu-item {
     background-color: #1E1E1E;
 }
@@ -220,7 +220,7 @@ header + div:not(.bmg-header_spacer) {
 .header-links {
     align-items: center;
     display: flex;
-    gap: 4px;
+    gap: 8px;
 }
 
 .header-link {
@@ -253,7 +253,7 @@ header + div:not(.bmg-header_spacer) {
 }
 
 .logo img {
-    height: 71px;
+    height: 63px;
 }
 
 .right-menu {
@@ -354,7 +354,7 @@ svg:not(:root) {
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 425px;
     width: 100vw;
 }
 
@@ -452,7 +452,6 @@ li > a.language-item-button {
 
 .search-block {
     display: grid;
-    margin: 0 8px;
 }
 
 .search-block .search-icon {
@@ -634,7 +633,7 @@ li > a.language-item-button {
 }
 
 .mobile-header-links {
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 2px solid rgba(255, 255, 255, 40%);
     display: none;
     gap: 32px;
     overflow-x: scroll;
@@ -642,12 +641,7 @@ li > a.language-item-button {
 }
 
 .mobile-header-links .header-link a {
-    padding: 0;
-}
-
-.mobile-header-links .header-link.active a,
-.mobile-header-links .header-link a.active {
-    background-color: transparent;
+    padding: 8px 12px;
 }
 
 .mobile-header-links .header-link a:hover {
@@ -780,10 +774,6 @@ li > a.language-item-button {
 
     header + div:not(.bmg-header_spacer) {
         margin-top: 92px !important;
-    }
-
-    .search-block {
-        display: none;
     }
 
     .left-menu {
