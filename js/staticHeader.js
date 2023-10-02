@@ -1,3 +1,11 @@
+function close2ndLevel() {
+    $('.menu-item-toggle').prop('checked', false);
+}
+
+function setOverflowY(overflow) {
+    $('body').css('overflow-y', overflow);
+}
+
 window.onpageshow = function(e){
     const menuToggle = $('input#menu-toggle')
 
@@ -5,13 +13,10 @@ window.onpageshow = function(e){
         menuToggle.prop('checked', false);
     }
 
-    $('.menu-item-toggle').prop('checked', false);
+    close2ndLevel();
 }
 
 $(document).ready(function(){
-    function close2ndLevel() {
-        $('.menu-item-toggle').prop('checked', false);
-    }
 
     // close navigation when clicking outside the menu
     $('.menu-bg').click(function () {
@@ -19,6 +24,7 @@ $(document).ready(function(){
         const menuToggle = $('input#menu-toggle')
         if (menuToggle.is(':checked')) {
             menuToggle.prop('checked', false);
+            setOverflowY('auto');
         }
 
         // Close Submenus
@@ -35,19 +41,25 @@ $(document).ready(function(){
     });
 
     $('.menu-btn').click(function () {
-        if($('.menu-toggle').prop('checked') === true) {
+        const menuToggleChecked = $('.menu-toggle').prop('checked')
+        if(menuToggleChecked) {
             close2ndLevel();
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
         }
-
-        if($(window).width() < 767) {
-            if($('.menu-toggle').prop('checked') === true) {
-                $('body').css('overflow-y', 'auto');
-            } else {
-                $('body').css('overflow-y', 'hidden');
-            }
+        if ($(window).width() < 767 && !menuToggleChecked) {
+            setOverflowY('hidden');
+        } else {
+            setOverflowY('auto');
         }
     });
+});
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 0) {
+        $('.homepage-addition').css('margin-top', '-60px');
+    } else {
+        $('.homepage-addition').css('margin-top', '0');
+    }
 });
