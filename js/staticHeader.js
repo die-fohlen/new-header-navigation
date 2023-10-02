@@ -55,3 +55,11 @@ $(document).ready(function(){
         }
     });
 });
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 0) {
+        $('.homepage-addition').css('margin-top', '-60px');
+    } else {
+        $('.homepage-addition').css('margin-top', '0');
+    }
+});

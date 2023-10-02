@@ -77,7 +77,9 @@ header + div:not(.bmg-header_spacer) {
     height: 100px;
     padding: 32px;
     place-content: center;
+    position: relative;
     width: 100%;
+    z-index: 50;
 }
 
 .left-menu {
@@ -459,6 +461,12 @@ li > a.language-item-button {
     grid-area: 1 / 1 / 2 / 2;
     padding-left: 16px;
     position: absolute;
+    transition: all 700ms ease-out;
+}
+
+.search-block .search-icon svg {
+    fill: #666666;
+    transition: all 400ms ease-out;
 }
 
 .search-block input {
@@ -473,7 +481,16 @@ li > a.language-item-button {
     outline: none;
     padding: 13px 16px 13px 50px;
     position: relative; /* when static, the search icon is over the input so you cant click in the input */
+    transition: all 400ms ease-out;
     width: 100%;
+}
+
+.search-block input:focus {
+    border-color: #FFFFFF !important;
+}
+
+.search-block input:focus ~ .search-icon svg {
+    fill: #FFFFFF;
 }
 
 .menu-item {
@@ -653,6 +670,8 @@ li > a.language-item-button {
 .homepage-addition {
     background-color: #000000;
     display: none;
+    z-index: 40;
+    transition: margin-top 400ms ease-out;
 }
 
 .homepage-addition ul {
