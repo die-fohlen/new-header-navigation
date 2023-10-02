@@ -671,7 +671,7 @@ li > a.language-item-button {
     background-color: #000000;
     display: none;
     z-index: 40;
-    transition: margin-top 400ms ease-out;
+    transition: margin-top 400ms ease-in-out;
 }
 
 .homepage-addition ul {
