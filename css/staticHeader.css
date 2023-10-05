@@ -64,7 +64,8 @@ header.bmg-header-container {
     height: 100px;
 }
 
-header + div:not(.bmg-header_spacer) {
+header + div:not(.bmg-header_spacer),
+header + div + section {
     margin-top: 100px !important;
 }
 
@@ -772,7 +773,8 @@ li > a.language-item-button {
         height: 92px;
     }
 
-    header + div:not(.bmg-header_spacer) {
+    header + div:not(.bmg-header_spacer),
+    header + div + section {
         margin-top: 92px !important;
     }
 
