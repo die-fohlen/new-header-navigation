@@ -8,7 +8,7 @@
 <header class="bmg-header-container">
     <div class="bmg-header">
         <div class="left-menu">
-            <div class="hamburger-menu">
+            <div class="hamburger-menu hidden-desktop">
                 <input class="menu-toggle" type="checkbox" id="menu-toggle"/>
                 <label class="menu-btn" for="menu-toggle">
                     <span></span>
@@ -17,58 +17,46 @@
                 <div class="menu-box">
                     <div class="primary-menu">
                         <div class="primary-menu-body">
-                            <ul class="mobile-header-links">
-                                <li class="header-link">
-                                    <a href="https://www.borussia.de/">
-                                        Borussia.de
-                                    </a>
-                                </li>
-                                <li class="header-link">
-                                    <a href="https://shop.borussia.de/">
-                                        Shop
-                                    </a>
-                                </li>
-                                <li class="header-link">
-                                    <a href="https://www.ticket-onlineshop.com/ols/borussia-tickets/?emid=6442794d80fbc8c3dc0791b5">
-                                        Tickets
-                                    </a>
-                                </li>
-                                <li class="header-link">
-                                    <a href="https://mitglied.borussia.de/">
-                                        Mitgliedschaft
-                                    </a>
-                                </li>
-                            </ul>
                             <ul class="primary-menu-list">
                                 <li class="primary-menu-item">
-                                    <label class="menu-item">
-                                        <div class="title">Heimspiele</div>
+                                    <a href="https://www.borussia.de/" class="menu-item active">
+                                        <div class="title">Borussia.de</div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14"
                                              fill="none">
                                             <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="2"
                                                   stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                    </label>
+                                    </a>
                                 </li>
                                 <li class="primary-menu-item">
-                                    <label class="menu-item">
-                                        <div class="title">Auswärtsspiele</div>
+                                    <a href="https://shop.borussia.de/" class="menu-item">
+                                        <div class="title">Shop</div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14"
                                              fill="none">
                                             <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="2"
                                                   stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                    </label>
+                                    </a>
                                 </li>
                                 <li class="primary-menu-item">
-                                    <label class="menu-item">
-                                        <div class="title">VIP-Tickets</div>
+                                    <a href="https://www.ticket-onlineshop.com/ols/borussia-tickets/" class="menu-item">
+                                        <div class="title">Tickets</div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14"
                                              fill="none">
                                             <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="2"
                                                   stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
-                                    </label>
+                                    </a>
+                                </li>
+                                <li class="primary-menu-item">
+                                    <a href="https://mitglied.borussia.de/" class="menu-item">
+                                        <div class="title">Mitgliedschaft</div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="14" viewBox="0 0 8 14"
+                                             fill="none">
+                                            <path d="M1 13L7 7L1 1" stroke="currentColor" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -81,12 +69,14 @@
                             </a>
 
                             <div class="language language-right hidden-desktop">
-                                <input type="checkbox" class="language-switch-toggle" id="language-switch-toggle-footer" hidden/>
-                                <label for="language-switch-toggle-footer" type="button">
+                                <input type="checkbox" class="language-switch-toggle" id="language-switch-toggle" hidden/>
+                                <label for="language-switch-toggle" type="button">
                                     DE
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="8" viewBox="0 0 15 8" fill="none">
-                                        <path d="M1.82727 1L7.66364 7L13.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
+                                    <span class="language-arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="8" viewBox="0 0 15 8" fill="none">
+                                            <path d="M1.82727 1L7.66364 7L13.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
                                 </label>
                                 <div class="language-states" id="bmg-nav-lang">
                                     <ul aria-labelledby="language-switch">
@@ -102,30 +92,6 @@
                                                 <span>EN</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a type="button" class="language-item-button" lang="de" href="/nl_NL/index.html">
-                                                <span>Nederlands</span>
-                                                <span>NL</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" class="language-item-button" lang="de" href="/es_ES/index.html">
-                                                <span>Español</span>
-                                                <span>ES</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" class="language-item-button" lang="de" href="/fr_FR/index.html">
-                                                <span>Français</span>
-                                                <span>FR</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a type="button" class="language-item-button" lang="de" href="/zh_ZH/index.html">
-                                                <span>Chinese</span>
-                                                <span>ZH</span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -135,7 +101,7 @@
             </div>
             <ul class="header-links">
                 <li class="header-link">
-                    <a href="https://www.borussia.de/">
+                    <a href="https://www.borussia.de/" class="active">
                         Borussia.de
                     </a>
                 </li>
@@ -145,7 +111,7 @@
                     </a>
                 </li>
                 <li class="header-link">
-                    <a href="https://www.ticket-onlineshop.com/ols/borussia-tickets/" class="active">
+                    <a href="https://www.ticket-onlineshop.com/ols/borussia-tickets/">
                         Tickets
                     </a>
                 </li>
@@ -160,6 +126,34 @@
             <img src="./logo.svg" alt="borussia logo"/>
         </a>
         <div class="right-menu">
+            <div class="language hidden-mobile">
+                <input type="checkbox" class="language-switch-toggle" id="language-switch-toggle" hidden/>
+                <label for="language-switch-toggle" type="button">
+                    DE
+                    <span class="language-arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="8" viewBox="0 0 15 8" fill="none">
+                                            <path d="M1.82727 1L7.66364 7L13.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                </label>
+                <div class="language-states" id="bmg-nav-lang">
+                    <ul aria-labelledby="language-switch">
+                        <li>
+                            <a type="button" class="language-item-button" lang="de" href="/de_DE/index.html">
+                                <span>Deutsch</span>
+                                <span>DE</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a type="button" class="language-item-button" lang="de" href="/en_EN/index.html">
+                                <span>English</span>
+                                <span>EN</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <ul class="meta-navigation">
                 <li>
                     <a href="#">

@@ -6,22 +6,22 @@ function setOverflowY(overflow) {
     $('body').css('overflow-y', overflow);
 }
 
-window.onpageshow = function (e) {
-    const menuToggle = $('input#menu-toggle');
+window.onpageshow = function(e){
+    const menuToggle = $('input#menu-toggle')
 
     if (menuToggle.is(':checked')) {
         menuToggle.prop('checked', false);
     }
 
     close2ndLevel();
-};
+}
 
-$(document).ready(function () {
+$(document).ready(function(){
 
     // close navigation when clicking outside the menu
     $('.menu-bg').click(function () {
         // close main Menu
-        const menuToggle = $('input#menu-toggle');
+        const menuToggle = $('input#menu-toggle')
         if (menuToggle.is(':checked')) {
             menuToggle.prop('checked', false);
             setOverflowY('auto');
@@ -35,25 +35,31 @@ $(document).ready(function () {
 
     // close 2nd level, when opening 1st level navigation
     $('.menu-item').click(function () {
-        if ($(this).closest('.primary-menu-item').find('.menu-item-toggle').prop('checked') === false) {
+        if($(this).closest('.primary-menu-item').find('.menu-item-toggle').prop('checked') === false) {
             $('.menu-item-toggle').prop('checked', false);
         }
     });
 
     $('.menu-btn').click(function () {
-        const menuToggleChecked = $('.menu-toggle').prop('checked');
-
-        if (menuToggleChecked) {
+        const menuToggleChecked = $('.menu-toggle').prop('checked')
+        if(menuToggleChecked) {
             close2ndLevel();
             setTimeout(() => {
                 $('#language-switch-toggle').prop('checked', false);
             }, 600); // close language switch after menu closing transition is done
         }
-
         if ($(window).width() < 767 && !menuToggleChecked) {
             setOverflowY('hidden');
         } else {
             setOverflowY('auto');
         }
     });
+});
+
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 0) {
+        $('.homepage-addition').css('margin-top', '-60px');
+    } else {
+        $('.homepage-addition').css('margin-top', '0');
+    }
 });
