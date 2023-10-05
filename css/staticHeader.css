@@ -462,11 +462,7 @@ li > a.language-item-button {
     padding-left: 16px;
     position: absolute;
     transition: all 700ms ease-out;
-}
-
-.search-block .search-icon svg {
     fill: #666666;
-    transition: all 400ms ease-out;
 }
 
 .search-block input {
@@ -489,7 +485,7 @@ li > a.language-item-button {
     border-color: #FFFFFF !important;
 }
 
-.search-block input:focus ~ .search-icon svg {
+.search-block input:focus ~ .search-icon {
     fill: #FFFFFF;
 }
 
