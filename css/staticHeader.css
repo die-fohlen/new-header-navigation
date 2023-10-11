@@ -145,6 +145,8 @@ header + div:not(.bmg-header_spacer) {
 .primary-menu-item > .menu-item:hover,
 .primary-menu-item > a .menu-item:hover {
     background-color: #303030;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .primary-menu-item > .menu-item.active,
