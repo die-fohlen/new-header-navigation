@@ -64,7 +64,16 @@ header.bmg-header-container {
     position: fixed; /* changed from sticky to fixed, because sticky didnt work*/
     right: 0;
     top: 0;
-    z-index: 599;
+    z-index: 10000;
+}
+
+.bmg-header-container li + .submenu-list__separator {
+    margin-top: 1rem;
+}
+
+.bmg-header-container .submenu-list__separator {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .bmg-header_spacer { /* to space the header because its not sticky */
@@ -143,6 +152,7 @@ header + div:not(.bmg-header_spacer) {
 }
 
 /* class .active can be changed if needed, e.g. if its needs to be .selected */
+.header-links .header-link a.active,
 .primary-menu-list .header-link a.active,
 .menu-item-toggle:checked ~ .menu-item {
     background-color: #1E1E1E;
@@ -681,13 +691,24 @@ li > a.language-item-button {
     padding: 8px;
 }
 
+.mobile-header-links .header-link {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .mobile-header-links .header-link a {
     align-items: center;
     display: flex;
     flex-direction: column;
     font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 19px;
     gap: 8px;
     padding: 0;
+    text-transform: uppercase;
+    min-width: 100px;
 }
 
 .mobile-header-links .header-link a .mobile-header-link-icon {
