@@ -47,6 +47,13 @@ ul {
     font-family: 'bmg-font-std', Arial;
 }
 
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
 /*
  * Everything above is just for making it look correct in this static version
  * When added to livesystem, the above is not needed, as its already included
@@ -57,7 +64,16 @@ header.bmg-header-container {
     position: fixed; /* changed from sticky to fixed, because sticky didnt work*/
     right: 0;
     top: 0;
-    z-index: 599;
+    z-index: 10000;
+}
+
+.bmg-header-container li + .submenu-list__separator {
+    margin-top: 1rem;
+}
+
+.bmg-header-container .submenu-list__separator {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .bmg-header_spacer { /* to space the header because its not sticky */
@@ -136,8 +152,14 @@ header + div:not(.bmg-header_spacer) {
 }
 
 /* class .active can be changed if needed, e.g. if its needs to be .selected */
-.header-link a.active,
+.header-links .header-link a.active,
+.primary-menu-list .header-link a.active,
 .menu-item-toggle:checked ~ .menu-item {
+    background-color: #1E1E1E;
+}
+
+.primary-menu-item > .menu-item.active,
+.primary-menu-item > a .menu-item.active {
     background-color: #1E1E1E;
 }
 
@@ -145,11 +167,8 @@ header + div:not(.bmg-header_spacer) {
 .primary-menu-item > .menu-item:hover,
 .primary-menu-item > a .menu-item:hover {
     background-color: #303030;
-}
-
-.primary-menu-item > .menu-item.active,
-.primary-menu-item > a .menu-item.active {
-    background-color: #1E1E1E;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .menu-btn {
@@ -160,7 +179,7 @@ header + div:not(.bmg-header_spacer) {
     justify-content: center;
     margin-bottom: 0; /* overwrite shop style */
     position: relative;
-    width: 32px;
+    width: 18px;
     z-index: 1;
 }
 
@@ -172,7 +191,7 @@ header + div:not(.bmg-header_spacer) {
     display: block;
     height: 2px;
     position: absolute;
-    transition-duration: 0.6s, 0.8s;
+    transition-duration: 0.7s;
     transition-property: width, transform;
     transition-timing-function: ease-out;
 }
@@ -225,6 +244,7 @@ header + div:not(.bmg-header_spacer) {
 
 .header-link {
     list-style: none;
+    width: 100%;
 }
 
 .header-link a {
@@ -307,12 +327,10 @@ header + div:not(.bmg-header_spacer) {
 
 .header-link-mobile a svg,
 .meta-navigation li a svg {
-    height: 20px;
     stroke: white;
     transition-duration: 0.6s, 0.8s;
     transition-property: stroke;
     transition-timing-function: ease-out;
-    width: 20px;
 }
 
 .meta-navigation li a .counter {
@@ -353,26 +371,19 @@ svg:not(:root) {
     display: flex;
     flex: 1;
     flex-direction: column;
+    gap: 15px;
     justify-content: space-between;
-    max-width: 425px;
+    max-width: 480px;
     width: 100vw;
 }
 
 .primary-menu-body {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     height: 100%;
     overflow: auto; /* make primary menu scrollable with too many categories */
     padding: 32px 16px;
-}
-
-.menu-box-footer {
-    align-items: center;
-    border-top: 1px solid white;
-    display: flex;
-    justify-content: space-between;
-    padding: 32px;
 }
 
 .language {
@@ -381,6 +392,7 @@ svg:not(:root) {
     display: flex;
     gap: 4px;
     position: relative;
+    z-index: 2;
 }
 
 .language.language-left .language-states {
@@ -394,6 +406,10 @@ svg:not(:root) {
 
 .language-switch-toggle:checked ~ .language-states {
     display: block;
+}
+
+.language-arrow > svg {
+    color: rgb(255, 255, 255, 0.5);
 }
 
 .language-switch-toggle ~ label .language-arrow {
@@ -452,7 +468,11 @@ li > a.language-item-button {
 
 .search-block {
     display: grid;
-    position: relative;
+    padding: 32px 24px 0;
+}
+
+.search-block + .primary-menu-body {
+    padding-top: 0;
 }
 
 .search-block .search-icon {
@@ -460,14 +480,13 @@ li > a.language-item-button {
     display: flex;
     grid-area: 1 / 1 / 2 / 2;
     padding-left: 16px;
-    top: 15px;
     position: absolute;
-    transition: all 700ms ease-out;
+    z-index: 1;
 }
 
 .search-block .search-icon svg {
     fill: #666666;
-    transition: all 400ms ease-out;
+    transition: all 700ms ease-out;
 }
 
 .search-block input {
@@ -497,11 +516,8 @@ li > a.language-item-button {
 .menu-item {
     align-items: center;
     border-radius: 8px;
-    color: white;
     cursor: pointer;
     display: flex;
-    font-size: 20px;
-    font-weight: 600;
     justify-content: space-between;
     margin-bottom: 0; /* remove shop style */
     padding: 16px;
@@ -512,8 +528,18 @@ li > a.language-item-button {
     width: 100%;
 }
 
+.menu-item > svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .menu-item > .title {
+    color: #FFFFFF;
     font-family: 'bmg-font-special', Arial, serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 20px;
+    text-transform: uppercase;
 }
 
 .submenu {
@@ -584,20 +610,28 @@ li > a.language-item-button {
     display: flex;
     font-size: 15px;
     gap: 8px;
+    line-height: 17px;
     margin-bottom: 0;
     padding: 2px 4px;
     width: max-content;
 }
 
+.back-link > svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .submenu-header .menu-title {
     font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 24px;
+    font-size: 22px;
+    letter-spacing: -0.44px;
+    line-height: 22px;
+    text-transform: uppercase;
 }
 
 .submenu-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     overflow: auto; /* make submenu scrollable with too many categories */
     padding-left: 32px;
 }
@@ -605,23 +639,37 @@ li > a.language-item-button {
 .submenu-list .menu-item {
     color: white; /* overwrite hover link color*/
     display: inline-grid;
-    font-size: 20px;
-    font-weight: 400;
-    padding: 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 19px;
+    padding: 2px 0;
     text-decoration: none; /* overwrite hover link style*/
     width: auto;
 }
 
 .menu-box-footer {
     align-items: center;
-    border-top: 1px solid white;
     display: flex;
     justify-content: space-between;
-    padding: 26px 32px;
+    padding: 24px 32px;
+    position: relative;
+}
+
+.menu-box-footer:before {
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 22.67%, #0D0D0D 36.71%);
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -29px;
+    z-index: 1;
 }
 
 .menu-box-footer .sponsors {
     display: none;
+    z-index: 2;
 }
 
 .home-button {
@@ -631,19 +679,46 @@ li > a.language-item-button {
     font-size: 16px;
     gap: 8px;
     text-decoration: none;
+    z-index: 2;
+}
 
+.home-button > svg {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .mobile-header-links {
-    border-bottom: 2px solid rgba(255, 255, 255, 40%);
     display: none;
-    gap: 32px;
-    overflow-x: scroll;
-    padding-bottom: 16px;
+    padding: 8px;
+}
+
+.mobile-header-links .header-link {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .mobile-header-links .header-link a {
-    padding: 8px 12px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 19px;
+    gap: 8px;
+    padding: 0;
+    text-transform: uppercase;
+    min-width: 100px;
+}
+
+.mobile-header-links .header-link a .mobile-header-link-icon {
+    align-items: center;
+    background: #1E1E1E;
+    border-radius: 35px;
+    display: flex;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
 }
 
 .mobile-header-links .header-link a:hover {
@@ -652,8 +727,8 @@ li > a.language-item-button {
 
 .mobile-header-links::-webkit-scrollbar {
     display: none;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 }
 
 .primary-menu-list { /* remove margin from main links in header */
@@ -666,8 +741,8 @@ li > a.language-item-button {
 .homepage-addition {
     background-color: #000000;
     display: none;
-    z-index: 40;
     transition: margin-top 400ms ease-in-out;
+    z-index: 40;
 }
 
 .homepage-addition ul {
@@ -738,6 +813,7 @@ li > a.language-item-button {
     .submenu {
         transform: translateX(-400px);
     }
+
     .primary-menu {
         max-width: 400px;
     }
@@ -791,8 +867,9 @@ li > a.language-item-button {
     }
 
     .submenu {
+        gap: 28px;
         transform: translateX(-768px);
-        z-index: 1; /* make the submenu above the language selector on mobile */
+        z-index: 4; /* make the submenu above the language selector on mobile */
     }
 
     .menu-toggle:checked ~ .menu-box .submenu.active {
@@ -811,17 +888,70 @@ li > a.language-item-button {
         gap: 3px;
     }
 
-    .header-link-mobile a svg,
-    .meta-navigation li a svg {
-        height: 18px;
-        width: 18px;
+    .primary-menu {
+        gap: 0;
+    }
+
+    .primary-menu-body {
+        order: 0;
+    }
+
+    .search-block {
+        order: 1;
+        padding-top: 0;
+        position: relative;
+        z-index: 3;
+    }
+
+    .search-block input {
+        z-index: 3;
+    }
+
+    .search-block + .primary-menu-body {
+        padding: 16px 16px 39px;
+    }
+
+    .search-block + div + .menu-box-footer:before {
+        content: none;
+    }
+
+    .search-block:before {
+        background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 13.69%, #0D0D0D 20.6%);
+        bottom: -72px;
+        content: "";
+        display: block;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -38px;
+        z-index: 1;
+    }
+
+    .menu-box-footer {
+        order: 2;
+        z-index: 3;
+    }
+
+    .submenu-list {
+        gap: 20px;
     }
 }
 
 @media (max-width: 1536px) {
     .mobile-header-links {
-        display: flex;
-        flex-shrink: 0;
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-between;
+        justify-items: center;
+    }
+
+    .primary-menu-list {
+        gap: 12px;
+    }
+
+    .menu-item {
+        padding: 12px 16px;
     }
 
     .primary-menu-body {

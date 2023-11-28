@@ -41,7 +41,8 @@ $(document).ready(function(){
     });
 
     $('.menu-btn').click(function () {
-        const menuToggleChecked = $('.menu-toggle').prop('checked')
+        const menuToggleChecked = $('#menu-toggle').prop('checked');
+
         if(menuToggleChecked) {
             close2ndLevel();
             setTimeout(() => {
