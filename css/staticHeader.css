@@ -24,19 +24,19 @@ ul {
     font-family: 'bmg-font-special';
     font-style: normal;
     font-weight: 400;
-    src: url('../bmg_header/Fonts/bungee/bmg-bungee.woff') format("woff");
+    src: url('./fonts/bungee/bmg-bungee.woff') format("woff");
 }
 
 @font-face {
     font-family: 'bmg-font-special';
     font-style: normal;
     font-weight: 700;
-    src: url('../bmg_header/Fonts/bungee/bmg-bungee.woff') format("woff");
+    src: url('./fonts/bungee/bmg-bungee.woff') format("woff");
 }
 
 @font-face {
     font-family: 'bmg-font-std';
-    src: url('../../bmg_header/Fonts/signika/Signika-VariableFont.ttf');
+    src: url('./fonts/signika/Signika-VariableFont.ttf');
 }
 
 .bungee {
