@@ -1,0 +1,971 @@
+*,
+::before,
+::after {
+    border: 0 solid #E5E7EB; /* make it more overwritable for the search input */
+    box-sizing: border-box;
+    font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body,
+header ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    scrollbar-width: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+@font-face {
+    font-family: 'bmg-font-special';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/bungee/bmg-bungee.woff') format("woff");
+}
+
+@font-face {
+    font-family: 'bmg-font-special';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/bungee/bmg-bungee.woff') format("woff");
+}
+
+@font-face {
+    font-family: 'bmg-font-std';
+    src: url('./fonts/signika/Signika-VariableFont.ttf');
+}
+
+.bungee {
+    font-family: 'bmg-font-special', Arial;
+}
+
+.signika {
+    font-family: 'bmg-font-std', Arial;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+}
+
+/*
+ * Everything above is just for making it look correct in this static version
+ * When added to livesystem, the above is not needed, as its already included
+ */
+header.bmg-header-container {
+    left: 0;
+    margin-bottom: 3em;
+    position: fixed; /* changed from sticky to fixed, because sticky didnt work*/
+    right: 0;
+    top: 0;
+    z-index: 10000;
+}
+
+.bmg-header-container li + .submenu-list__separator {
+    margin-top: 1rem;
+}
+
+.bmg-header-container .submenu-list__separator {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.bmg-header_spacer { /* to space the header because its not sticky */
+    height: 100px;
+}
+
+header + div:not(.bmg-header_spacer) {
+    margin-top: 100px !important;
+}
+
+.bmg-header {
+    background-color: black;
+    color: white;
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 1fr 50px 1fr;
+    height: 100px;
+    padding: 32px;
+    place-content: center;
+    position: relative;
+    width: 100%;
+    z-index: 50;
+}
+
+.left-menu {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+}
+
+.hamburger-menu {
+    align-items: center;
+    color: white;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.hidden-mobile {
+    display: flex;
+}
+
+.hidden-desktop {
+    display: none;
+}
+
+.menu-toggle,
+.menu-item-toggle,
+.language-switch-toggle {
+    display: none;
+}
+
+.menu-bg {
+    background-color: #000000;
+    inset: 0;
+    opacity: 0;
+    position: fixed;
+    top: 100px;
+    transition: visibility 0.6s, opacity 0.6s ease-out;
+    visibility: hidden;
+}
+
+.menu-toggle:checked ~ .navigation .menu-bg {
+    opacity: 30%;
+    visibility: visible;
+}
+
+.menu-toggle:checked ~ .navigation .menu-box {
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(0);
+}
+
+.menu-item-toggle:checked ~ .submenu {
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateX(768px);
+}
+
+/* class .active can be changed if needed, e.g. if its needs to be .selected */
+.header-links .header-link a.active,
+.primary-menu-list .header-link a.active,
+.menu-item-toggle:checked ~ .menu-item {
+    background-color: #1E1E1E;
+}
+
+.primary-menu-item > .menu-item.active,
+.primary-menu-item > a .menu-item.active {
+    background-color: #1E1E1E;
+}
+
+.header-link a:hover,
+.primary-menu-item > .menu-item:hover,
+.primary-menu-item > a .menu-item:hover {
+    background-color: #303030;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.menu-btn {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 18px;
+    justify-content: center;
+    margin-bottom: 0; /* overwrite shop style */
+    position: relative;
+    width: 18px;
+    z-index: 1;
+}
+
+.menu-btn > span,
+.menu-btn > span::before,
+.menu-btn > span::after {
+    background-color: white;
+    border-radius: 7px;
+    display: block;
+    height: 2px;
+    position: absolute;
+    transition-duration: 0.7s;
+    transition-property: width, transform;
+    transition-timing-function: ease-out;
+}
+
+.menu-btn > span,
+.menu-btn > span::after {
+    width: 12px;
+}
+
+.menu-btn > span::before {
+    content: "";
+    top: -6px;
+    width: 18px;
+}
+
+.menu-btn > span::after {
+    content: "";
+    top: 6px;
+}
+
+.menu-toggle:checked + header .menu-btn > span {
+    transform: rotate(45deg);
+    width: 18px;
+}
+
+.menu-toggle:checked + header .menu-btn > span::before {
+    top: 0;
+    width: 0;
+}
+
+.menu-toggle:checked + header .menu-btn > span::after {
+    top: 0;
+    transform: rotate(-90deg);
+    width: 18px;
+}
+
+.header-links-mobile {
+    display: none;
+}
+
+.header-link-mobile svg {
+    stroke: white;
+}
+
+.header-links {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+.header-link {
+    list-style: none;
+    width: 100%;
+}
+
+.header-link a {
+    border-radius: 9px;
+    color: white;
+    display: flex;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    padding: 8px 12px;
+    text-decoration: none;
+    transition-duration: 400ms;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+}
+
+.header-link a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 63px;
+}
+
+.right-menu {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+    justify-content: flex-end;
+}
+
+.right-menu .language .language-states {
+    bottom: unset;
+    left: unset;
+    right: 0;
+    top: calc(100% + 8px);
+}
+
+.meta-navigation,
+.header-link-mobile {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+}
+
+.sponsors {
+    align-items: center;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+}
+
+.sponsors li a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.meta-navigation li {
+    list-style: none;
+}
+
+.meta-navigation li a {
+    position: relative;
+}
+
+.meta-navigation li a,
+.header-link-mobile a {
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+}
+
+.header-link-mobile a svg,
+.meta-navigation li a svg {
+    stroke: white;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: stroke;
+    transition-timing-function: ease-out;
+}
+
+.meta-navigation li a .counter {
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    justify-content: center;
+    padding: 2px 4px;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.menu-box {
+    display: flex;
+    height: calc(100% - 100px);
+    left: 0;
+    list-style: none;
+    margin: 100px 0 0 0;
+    position: fixed;
+    top: 0;
+    transform: translateX(-768px);
+    transition-duration: 0.6s, 0.8s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+.primary-menu {
+    background-color: #0D0D0D;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    max-width: 480px;
+    width: 100vw;
+}
+
+.primary-menu-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    overflow: auto; /* make primary menu scrollable with too many categories */
+    padding: 32px 16px;
+}
+
+.language {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 4px;
+    position: relative;
+    z-index: 2;
+}
+
+.language.language-left .language-states {
+    left: 0;
+}
+
+.language.language-right .language-states {
+    left: unset;
+    right: 0;
+}
+
+.language-switch-toggle:checked ~ .language-states {
+    display: block;
+}
+
+.language-arrow > svg {
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.language-switch-toggle ~ label .language-arrow {
+    display: flex;
+    transition-duration: 400ms;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+.language-switch-toggle:checked ~ label .language-arrow {
+    transform: rotate(180deg);
+}
+
+.language > label {
+    align-items: center;
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    gap: 13px;
+    line-height: 24px;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+}
+
+.language-states {
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    bottom: calc(100% + 8px);
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.4);
+    display: none;
+    left: 0;
+    overflow: hidden;
+    padding: 12px 16px;
+    position: absolute;
+    width: 160px;
+    z-index: 10;
+}
+
+.language-states ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+li > a.language-item-button {
+    color: #FFFFFF;
+    display: inline-flex;
+    font-size: 14px;
+    justify-content: space-between;
+    text-decoration: none; /* changed from 'button' to 'a' to work with old implementation */
+    width: 100%;
+}
+
+.search-block {
+    display: grid;
+    padding: 32px 24px 0;
+}
+
+.search-block + .primary-menu-body {
+    padding-top: 0;
+}
+
+.search-block .search-icon {
+    align-self: center;
+    display: flex;
+    grid-area: 1 / 1 / 2 / 2;
+    padding-left: 16px;
+    position: absolute;
+    z-index: 1;
+}
+
+.search-block .search-icon svg {
+    fill: #666666;
+    transition: all 700ms ease-out;
+}
+
+.search-block input {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #666666 !important; /* make important for overwriting the shop styles */
+    border-radius: 9px;
+    color: white;
+    display: flex;
+    font-size: 17px;
+    grid-area: 1 / 1 / 2 / 2;
+    outline: none;
+    padding: 13px 16px 13px 50px;
+    position: relative; /* when static, the search icon is over the input so you cant click in the input */
+    transition: all 400ms ease-out;
+    width: 100%;
+}
+
+.search-block input:focus {
+    border-color: #FFFFFF !important;
+}
+
+.search-block input:focus ~ .search-icon svg {
+    fill: #FFFFFF;
+}
+
+.menu-item {
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0; /* remove shop style */
+    padding: 16px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    transition-property: background-color;
+    transition-timing-function: ease-out;
+    width: 100%;
+}
+
+.menu-item > svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-item > .title {
+    color: #FFFFFF;
+    font-family: 'bmg-font-special', Arial, serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.submenu {
+    background-color: #0d0d0d;
+    bottom: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    inset: 0;
+    left: 0;
+    max-width: 100vw;
+    padding: 32px;
+    position: fixed;
+    top: 0;
+    transition-duration: 0.7s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+    width: 768px;
+    z-index: -1;
+}
+
+.submenu .menu-item {
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    display: inline-flex;
+    transition-duration: 0.6s, 0.8s;
+    transition-property: border-bottom-color;
+    transition-timing-function: ease-out;
+}
+
+.submenu .menu-item.active:after {
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.submenu .menu-item:after {
+    content: "";
+    display: block;
+    height: 2px;
+    transition-duration: 700ms;
+    transition-property: all;
+    transition-timing-function: ease-out;
+    width: 0;
+}
+
+.submenu .menu-item:hover:after {
+    background-color: #7E7E7E;
+    content: "";
+    display: block;
+    width: 100%;
+}
+
+.menu-toggle:checked ~ .menu-box .submenu.active {
+    box-shadow: -10px 0 14px 0 rgba(0, 0, 0, 0.25);
+    transform: translateX(768px);
+}
+
+.submenu-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.back-link {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 15px;
+    gap: 8px;
+    line-height: 17px;
+    margin-bottom: 0;
+    padding: 2px 4px;
+    width: max-content;
+}
+
+.back-link > svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.submenu-header .menu-title {
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 22px;
+    letter-spacing: -0.44px;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+
+.submenu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: auto; /* make submenu scrollable with too many categories */
+    padding-left: 32px;
+}
+
+.submenu-list .menu-item {
+    color: white; /* overwrite hover link color*/
+    display: inline-grid;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0;
+    text-decoration: none; /* overwrite hover link style*/
+    width: auto;
+}
+
+.menu-box-footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 32px;
+    position: relative;
+}
+
+.menu-box-footer:before {
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 13.69%, #0D0D0D 20.6%);
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: -26px;
+    z-index: 1;
+}
+
+.menu-box-footer .sponsors {
+    visibility: hidden;
+    z-index: 2;
+}
+
+.home-button {
+    align-items: center;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.home-button > svg {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mobile-header-links {
+    display: none;
+    padding: 8px;
+}
+
+.mobile-header-links .header-link {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-header-links .header-link a {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: "bmg-font-std", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 19px;
+    gap: 8px;
+    padding: 0;
+    text-transform: uppercase;
+    min-width: 100px;
+}
+
+.mobile-header-links .header-link a .mobile-header-link-icon {
+    align-items: center;
+    background: #1E1E1E;
+    border-radius: 35px;
+    display: flex;
+    height: 52px;
+    justify-content: center;
+    width: 52px;
+}
+
+.mobile-header-links .header-link a:hover {
+    background-color: unset;
+}
+
+.mobile-header-links::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+
+.primary-menu-list { /* remove margin from main links in header */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.homepage-addition {
+    background-color: #000000;
+    display: none;
+    transition: margin-top 400ms ease-in-out;
+    z-index: 40;
+}
+
+.homepage-addition ul {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 16px 14px;
+}
+
+.homepage-addition ul li a {
+    align-items: center;
+    background-color: #181818;
+    border-radius: 8px;
+    color: #FFFFFF;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.homepage-addition ul li a:hover {
+    background-color: #303030;
+}
+
+.homepage-addition ul li a svg {
+    height: 22px;
+    width: 22px;
+}
+
+.homepage-addition ul li a span {
+    font-family: "bmg-font-special", Tahoma, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+    header.bmg-header {
+        margin-bottom: 0;
+    }
+
+    .logo img {
+        height: 63px;
+    }
+
+    .right-menu .sponsors {
+        display: none;
+    }
+
+    .menu-box-footer .sponsors {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-addition {
+        display: block;
+    }
+
+    header:has(.homepage-addition) + div {
+        margin-top: 152px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-box,
+    .submenu {
+        transform: translateX(-400px);
+    }
+
+    .primary-menu {
+        max-width: 400px;
+    }
+
+    .submenu {
+        width: 400px;
+    }
+
+    .menu-item-toggle:checked ~ .submenu {
+        transform: translateX(400px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .menu-bg {
+        top: 92px;
+    }
+
+    .menu-box {
+        height: calc(100% - 92px);
+        margin-top: 92px;
+    }
+
+    .right-menu .user {
+        display: none;
+    }
+
+    .bmg-header {
+        height: 92px;
+        padding: 14px 16px;
+    }
+
+    .bmg-header_spacer {
+        height: 92px;
+    }
+
+    header + div:not(.bmg-header_spacer) {
+        margin-top: 92px !important;
+    }
+
+    .left-menu {
+        gap: 28px;
+    }
+
+    .header-links-mobile {
+        display: block;
+    }
+
+    .meta-navigation .user {
+        display: none;
+    }
+
+    .submenu {
+        gap: 28px;
+        transform: translateX(-768px);
+        z-index: 4; /* make the submenu above the language selector on mobile */
+    }
+
+    .menu-toggle:checked ~ .menu-box .submenu.active {
+        transform: translateX(0);
+    }
+
+    .menu-item-toggle:checked ~ .submenu {
+        transform: translateX(0px);
+    }
+
+    .meta-navigation {
+        gap: 28px;
+    }
+
+    .meta-navigation ul {
+        gap: 3px;
+    }
+
+    .primary-menu {
+        gap: 0;
+    }
+
+    .primary-menu-body {
+        order: 0;
+    }
+
+    .search-block {
+        order: 1;
+        padding-top: 0;
+        position: relative;
+        z-index: 3;
+    }
+
+    .search-block input {
+        z-index: 3;
+    }
+
+    .search-block + .primary-menu-body {
+        padding: 16px 16px 39px;
+    }
+
+    .search-block + div + .menu-box-footer:before {
+        content: none;
+    }
+
+    .search-block:before {
+        background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 13.69%, #0D0D0D 20.6%);
+        bottom: -72px;
+        content: "";
+        display: block;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -38px;
+        z-index: 1;
+    }
+
+    .menu-box-footer {
+        order: 2;
+        z-index: 3;
+    }
+}
+
+@media (max-width: 1536px) {
+    .mobile-header-links {
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-between;
+        justify-items: center;
+    }
+
+    .primary-menu-list {
+        gap: 12px;
+    }
+
+    .menu-item {
+        padding: 12px 16px;
+    }
+
+    .primary-menu-body {
+        padding: 16px;
+    }
+
+    .header-links {
+        display: none;
+    }
+
+    .hidden-mobile {
+        display: none;
+    }
+
+    .hidden-desktop {
+        display: flex;
+    }
+}
