@@ -655,7 +655,7 @@ li > a.language-item-button {
 }
 
 .menu-box-footer:before {
-    background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 22.67%, #0D0D0D 36.71%);
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.00) 0%, rgba(13, 13, 13, 0.62) 13.69%, #0D0D0D 20.6%);
     bottom: 0;
     content: "";
     display: block;
