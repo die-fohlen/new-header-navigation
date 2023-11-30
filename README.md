@@ -16,6 +16,7 @@ This repository includes a static version of the new Header navigation for Borus
 - [Shop](/shop.html)
 - [Salesforce](/salesforce.html)
 - [Eventim](/eventim.html)
+- [Mitglieder](/mitglied.html)
 
 <hr/>
 
