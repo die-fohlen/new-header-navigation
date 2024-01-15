@@ -98,6 +98,10 @@ header + div:not(.bmg-header_spacer) {
     z-index: 50;
 }
 
+.arrow-icon {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .left-menu {
     align-items: center;
     display: flex;
